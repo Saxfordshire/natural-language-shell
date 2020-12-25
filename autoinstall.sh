@@ -199,7 +199,6 @@ if ! command -v go &> /dev/null; then
 else
     printf "%s\n" ", done."
 fi
-printf "%s\n" ", done."
 git clone https://github.com/Saxfordshire/natural-language-shell.git $HOME/"Natural Language Shell" --depth 1
 printf "%s\n" "Building Go package (your password may be required)..."
 $(cd $HOME/"Natural Language Shell" && sudo go build -o /usr/local/bin/nls)
