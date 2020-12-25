@@ -125,6 +125,9 @@ if ! command -v go &> /dev/null; then
         elif command -v pacman &> /dev/null; then
             sudo pacman -S go
             printf "%s\n" ", done."
+        elif command -v snap &> /dev/null; then
+            sudo snap install go
+            printf "%s\n" ", done."
         elif command -v urpmi &> /dev/null; then
             sudo urpmi go
             printf "%s\n" ", done."
