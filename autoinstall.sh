@@ -64,6 +64,8 @@ if ! command -v git &> /dev/null; then
     else
         printf "%s\n" "autoinstall: unable to install Git. Please follow the instructions at https://git-scm.com/download"
     fi
+else
+    printf "%s\n" ", done."
 fi
 printf "%s" "autoinstall: verifying Go installation"
 if ! command -v go &> /dev/null; then
@@ -129,6 +131,8 @@ if ! command -v go &> /dev/null; then
     else
         printf "%s\n" "autoinstall: unable to install Git. Please follow the instructions at https://git-scm.com/download"
     fi
+else
+    printf "%s\n" ", done."
 fi
 printf "%s" "autoinstall: verifying Python 3 installation"
 if ! command -v python3 &> /dev/null
