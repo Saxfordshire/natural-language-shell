@@ -106,10 +106,10 @@ if ! command -v go &> /dev/null; then
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # Ordered alphabetically with universal package managers first, then 
         # distro-specific pacage managers after to avoid potential conflicts
-        elif command -v snap &> /dev/null; then
+        if command -v snap &> /dev/null; then
             sudo snap install go
             printf "%s\n" ", done."
-        if command -v apk &> /dev/null; then 
+        elif command -v apk &> /dev/null; then 
             apk add go
             printf "%s\n" ", done."
         elif command -v apt-get &> /dev/null; then
