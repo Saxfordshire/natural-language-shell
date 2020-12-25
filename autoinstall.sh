@@ -104,6 +104,11 @@ if ! command -v go &> /dev/null; then
             printf "%s\n" "autoinstall: unable to install Go for Mac. Please follow the instructions at https://git-scm.com/download/mac"
         fi
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Ordered alphabetically with universal package managers first, then 
+        # distro-specific pacage managers after to avoid potential conflicts
+        elif command -v snap &> /dev/null; then
+            sudo snap install go
+            printf "%s\n" ", done."
         if command -v apk &> /dev/null; then 
             apk add go
             printf "%s\n" ", done."
@@ -124,9 +129,6 @@ if ! command -v go &> /dev/null; then
             printf "%s\n" ", done."
         elif command -v pacman &> /dev/null; then
             sudo pacman -S go
-            printf "%s\n" ", done."
-        elif command -v snap &> /dev/null; then
-            sudo snap install go
             printf "%s\n" ", done."
         elif command -v urpmi &> /dev/null; then
             sudo urpmi go
