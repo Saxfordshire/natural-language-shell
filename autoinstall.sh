@@ -90,7 +90,7 @@ fi
 printf "%s" "autoinstall: checking Go installation"
 if ! command -v go &> /dev/null; then
     printf "%s\n" ", done."
-    printf "%s" "autointall: installing Go"
+    printf "%s\n" "autointall: installing Go..."
     if [[ "$OSTYPE" == "darwin"* ]]; then
         if command -v brew &> /dev/null; then
             brew install go
@@ -107,7 +107,7 @@ if ! command -v go &> /dev/null; then
         # Ordered alphabetically with universal package managers first, then 
         # distro-specific pacage managers after to avoid potential conflicts
         if command -v snap &> /dev/null; then
-            sudo snap install go
+            sudo snap install go --classic
             printf "%s\n" ", done."
         elif command -v apk &> /dev/null; then 
             apk add go
