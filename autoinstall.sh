@@ -145,12 +145,12 @@ if ! command -v go &> /dev/null; then
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             brew install python3
         else
-            printf "%s\n" "autoinstall: unable to install Python 3 for Mac. Please follow the instructions at https://git-scm.com/download/mac"
+            printf "%s\n" "autoinstall: unable to install Python 3 for Mac. Please follow the instructions at https://www.python.org/downloads/"
         fi
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # Ordered alphabetically with universal package managers first, then 
         # distro-specific pacage managers after to avoid potential conflicts
-        elif command -v apk &> /dev/null; then 
+        if command -v apk &> /dev/null; then 
             apk add python3
         elif command -v apt-get &> /dev/null; then
             sudo apt-get install python3
@@ -171,13 +171,13 @@ if ! command -v go &> /dev/null; then
         elif command -v zypper &> /dev/null; then
             sudo zypper install python3
         else
-            printf "%s\n" "autoinstall: unable to install Python 3 for Linux. Please follow the instructions at https://git-scm.com/download/linux"
+            printf "%s\n" "autoinstall: unable to install Python 3 for Linux. Please follow the instructions at https://www.python.org/downloads/"
         fi
     elif [[ "$OSTYPE" == "FreeBSD"* ]]; then
         if command -v zypper &> /dev/null; then
             sudo zypper install python3
         else
-            printf "%s\n" "autoinstall: unable to install Python 3 for FreeBSD. Please follow the instructions at https://git-scm.com/download/linux"
+            printf "%s\n" "autoinstall: unable to install Python 3 for FreeBSD. Please follow the instructions at https://www.python.org/downloads/"
         fi
     elif [[ "$OSTYPE" == "solaris"* ]]; then
         if command -v pkgutil &> /dev/null; then
@@ -185,16 +185,16 @@ if ! command -v go &> /dev/null; then
         elif command -v pkg &> /dev/null; then
             sudo pkg install developer/versioning/python3
         else
-            printf "%s\n" "autoinstall: unable to install Python 3 for Solaris. Please follow the instructions at https://git-scm.com/download/linux"
+            printf "%s\n" "autoinstall: unable to install Python 3 for Solaris. Please follow the instructions at https://www.python.org/downloads/"
         fi
     elif [[ "$OSTYPE" == "openbsd"* ]]; then
         if command -v pkg_add &> /dev/null; then
             sudo pkg_add python3
         else
-            printf "%s\n" "autoinstall: unable to install Python 3 for OpenBSD. Please follow the instructions at https://git-scm.com/download/linux"
+            printf "%s\n" "autoinstall: unable to install Python 3 for OpenBSD. Please follow the instructions at https://www.python.org/downloads/"
         fi
     else
-        printf "%s\n" "autoinstall: unable to install Python 3. Please follow the instructions at https://git-scm.com/download"
+        printf "%s\n" "autoinstall: unable to install Python 3. Please follow the instructions at https://www.python.org/downloads/"
     fi
 else
     printf "%s\n" ", done."
