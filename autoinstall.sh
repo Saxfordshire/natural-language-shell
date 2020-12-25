@@ -161,9 +161,8 @@ then
 fi
 printf "%s\n" ", done."
 git clone https://github.com/Saxfordshire/natural-language-shell.git $HOME/"Natural Language Shell" --depth 1
-printf "%s" "Building Go package (your password may be required)"
-$(cd $HOME/"Natural Language Shell" && go build -o /usr/local/bin/nls)
-printf "%s\n" ", done."
+printf "%s\n" "Building Go package (your password may be required)..."
+$(cd $HOME/"Natural Language Shell" && sudo go build -o /usr/local/bin/nls)
 printf "%s" "Removing build files"
 rm -rf $HOME/"Natural Language Shell"
 printf "%s\n" ", done."
