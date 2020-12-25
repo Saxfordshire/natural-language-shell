@@ -88,7 +88,7 @@ else
     printf "%s\n" ", done."
 fi
 printf "%s" "autoinstall: checking Go installation"
-if ! command -v git &> /dev/null; then
+if ! command -v go &> /dev/null; then
     printf "%s\n" ", done."
     printf "%s" "autointall: installing Go"
     if [[ "$OSTYPE" == "darwin"* ]]; then
