@@ -84,6 +84,8 @@ if ! command -v git &> /dev/null; then
         printf "%s\n" ", error!"
         printf "%s\n" "autoinstall: unable to install Git. Please follow the instructions at https://git-scm.com/download"
     fi
+else
+    printf "%s\n" ", done."
 fi
 printf "%s" "autoinstall: checking Go installation"
 if ! command -v go &> /dev/null
