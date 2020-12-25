@@ -3,14 +3,14 @@ printf "%s\n" "Welcome to NLS! The installation will begin soon."
 rm -rf $HOME/"Natural Language Shell"
 printf "%s\n" "Verifying dependencies..."
 printf "%s" "autoinstall: checking Git installation"
-if [ ! command -v git &> /dev/null ]; then
+if ! command -v git &> /dev/null; then
     printf "%s\n" ", done."
     printf "%s" "autointall: installing Git"
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        if [ command -v brew &> /dev/null ]; then
+        if command -v brew &> /dev/null; then
             brew install git
             printf "%s\n" ", done."
-        elif [ ! command -v brew &> /dev/null ]; then
+        elif ! command -v brew &> /dev/null; then
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             brew install git
             printf "%s\n" ", done."
@@ -19,34 +19,34 @@ if [ ! command -v git &> /dev/null ]; then
             printf "%s\n" "autoinstall: unable to install Git for Mac. Please follow the instructions at https://git-scm.com/download/mac"
         fi
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        if [ command -v apk &> /dev/null ]; then 
+        if command -v apk &> /dev/null; then 
             apk add git
             printf "%s\n" ", done."
-        elif [ command -v apt-get &> /dev/null ]; then
+        elif command -v apt-get &> /dev/null; then
             sudo apt-get install git
             printf "%s\n" ", done."
-        elif [ command -v brew &> /dev/null ]; then
+        elif command -v brew &> /dev/null; then
             brew install git
             printf "%s\n" ", done."
-        elif [ command -v dnf &> /dev/null ]; then
+        elif command -v dnf &> /dev/null; then
             sudo dnf install git
             printf "%s\n" ", done."
-        elif [ command -v emerge &> /dev/null ]; then
+        elif command -v emerge &> /dev/null; then
             sudo emerge --ask --verbose dev-vcs/git
             printf "%s\n" ", done."
-        elif [ command -v nix-env &> /dev/null ]; then
+        elif command -v nix-env &> /dev/null; then
             sudo nix-env -i git
             printf "%s\n" ", done."
-        elif [ command -v pacman &> /dev/null ]; then
+        elif command -v pacman &> /dev/null; then
             sudo pacman -S git
             printf "%s\n" ", done."
-        elif [ command -v urpmi &> /dev/null ]; then
+        elif command -v urpmi &> /dev/null; then
             sudo urpmi git
             printf "%s\n" ", done."
-        elif [ command -v yum &> /dev/null ]; then
+        elif command -v yum &> /dev/null; then
             sudo yum install git
             printf "%s\n" ", done."
-        elif [ command -v zypper &> /dev/null ]; then
+        elif command -v zypper &> /dev/null; then
             sudo zypper install git
             printf "%s\n" ", done."
         else
@@ -54,7 +54,7 @@ if [ ! command -v git &> /dev/null ]; then
             printf "%s\n" "autoinstall: unable to install Git for Linux. Please follow the instructions at https://git-scm.com/download/linux"
         fi
     elif [[ "$OSTYPE" == "FreeBSD"* ]]; then
-        if [ command -v zypper &> /dev/null ]; then
+        if command -v zypper &> /dev/null; then
             sudo zypper install git
             printf "%s\n" ", done."
         else
@@ -62,10 +62,10 @@ if [ ! command -v git &> /dev/null ]; then
             printf "%s\n" "autoinstall: unable to install Git for FreeBSD. Please follow the instructions at https://git-scm.com/download/linux"
         fi
     elif [[ "$OSTYPE" == "solaris"* ]]; then
-        if [ command -v pkgutil &> /dev/null ]; then
+        if command -v pkgutil &> /dev/null; then
             sudo pkgutil -i git
             printf "%s\n" ", done."
-        elif [ command -v pkg &> /dev/null ]; then
+        elif command -v pkg &> /dev/null; then
             sudo pkg install developer/versioning/git
             printf "%s\n" ", done."
         else
@@ -73,7 +73,7 @@ if [ ! command -v git &> /dev/null ]; then
             printf "%s\n" "autoinstall: unable to install Git for Solaris. Please follow the instructions at https://git-scm.com/download/linux"
         fi
     elif [[ "$OSTYPE" == "openbsd"* ]]; then
-        if [ command -v pkg_add &> /dev/null ]; then
+        if command -v pkg_add &> /dev/null; then
             sudo pkg_add git
             printf "%s\n" ", done."
         else
@@ -86,13 +86,13 @@ if [ ! command -v git &> /dev/null ]; then
     fi
 fi
 printf "%s" "autoinstall: checking Go installation"
-if [ ! command -v go &> /dev/null ]
+if ! command -v go &> /dev/null
 then
     printf "%s\n" "autoinstall: Go could not be found, please install Go"
 fi
 printf "%s\n" ", done."
 printf "%s" "autoinstall: checking Python 3 installation"
-if [ ! command -v python3 &> /dev/null ]
+if ! command -v python3 &> /dev/null
 then
     printf "%s\n" "autoinstall: Python 3 could not be found, it isn't required"
     printf "%s\n" "             but consider installing Python 3 for additional"
