@@ -135,11 +135,69 @@ else
     printf "%s\n" ", done."
 fi
 printf "%s" "autoinstall: verifying Python 3 installation"
-if ! command -v python3 &> /dev/null
-then
-    printf "%s\n" "autoinstall: Python 3 could not be found, it isn't required"
-    printf "%s\n" "             but consider installing Python 3 for additional"
-    printf "%s\n" "             functionality." 
+if ! command -v go &> /dev/null; then
+    printf "%s\n" ", done."
+    printf "%s\n" "autoinstall: installing Python 3..."
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        if command -v brew &> /dev/null; then
+            brew install python3
+        elif ! command -v brew &> /dev/null; then
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            brew install python3
+        else
+            printf "%s\n" "autoinstall: unable to install Python 3 for Mac. Please follow the instructions at https://git-scm.com/download/mac"
+        fi
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Ordered alphabetically with universal package managers first, then 
+        # distro-specific pacage managers after to avoid potential conflicts
+        elif command -v apk &> /dev/null; then 
+            apk add python3
+        elif command -v apt-get &> /dev/null; then
+            sudo apt-get install python3
+        elif command -v brew &> /dev/null; then
+            brew install python3
+        elif command -v dnf &> /dev/null; then
+            sudo dnf install python3
+        elif command -v emerge &> /dev/null; then
+            sudo emerge --ask --verbose dev-vcs/python3
+        elif command -v nix-env &> /dev/null; then
+            sudo nix-env -i python3
+        elif command -v pacman &> /dev/null; then
+            sudo pacman -S python3
+        elif command -v urpmi &> /dev/null; then
+            sudo urpmi python3
+        elif command -v yum &> /dev/null; then
+            sudo yum install python3
+        elif command -v zypper &> /dev/null; then
+            sudo zypper install python3
+        else
+            printf "%s\n" "autoinstall: unable to install Python 3 for Linux. Please follow the instructions at https://git-scm.com/download/linux"
+        fi
+    elif [[ "$OSTYPE" == "FreeBSD"* ]]; then
+        if command -v zypper &> /dev/null; then
+            sudo zypper install python3
+        else
+            printf "%s\n" "autoinstall: unable to install Python 3 for FreeBSD. Please follow the instructions at https://git-scm.com/download/linux"
+        fi
+    elif [[ "$OSTYPE" == "solaris"* ]]; then
+        if command -v pkgutil &> /dev/null; then
+            sudo pkgutil -i python3
+        elif command -v pkg &> /dev/null; then
+            sudo pkg install developer/versioning/python3
+        else
+            printf "%s\n" "autoinstall: unable to install Python 3 for Solaris. Please follow the instructions at https://git-scm.com/download/linux"
+        fi
+    elif [[ "$OSTYPE" == "openbsd"* ]]; then
+        if command -v pkg_add &> /dev/null; then
+            sudo pkg_add python3
+        else
+            printf "%s\n" "autoinstall: unable to install Python 3 for OpenBSD. Please follow the instructions at https://git-scm.com/download/linux"
+        fi
+    else
+        printf "%s\n" "autoinstall: unable to install Python 3. Please follow the instructions at https://git-scm.com/download"
+    fi
+else
+    printf "%s\n" ", done."
 fi
 printf "%s\n" ", done."
 git clone https://github.com/Saxfordshire/natural-language-shell.git $HOME/"Natural Language Shell" --depth 1
