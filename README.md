@@ -21,7 +21,7 @@ Run one of the following commands in your terminal to install NLS. You may need 
 Main branch (recommended):
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Saxfordshire/natural-language-shell/main/autoinstall.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Saxfordshire/natural-language-shell/autoinstall.sh)"
 ```
 
 ## Usage
