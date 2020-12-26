@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
 	"log"
@@ -165,15 +166,37 @@ func evaluate(input string) {
 	}
 }
 
+/*		Implementation of Natural Language Shell Interactive Shell
+**		To be continued henceforth
+ */
+
+func shell() {
+
+	fmt.Println("Starting interactive shell.")
+	reader := bufio.NewReader(os.Stdin)
+	input, _ := reader.ReadString('\n')
+
+	for input != ".quit" {
+		fmt.Printf("shell>")
+		fmt.Printf(input)
+	}
+
+	/* scanner := bufio.NewScanner(os.Stdin)
+	fmt.Print()*/
+}
+
 func main() {
 
 	var version bool
 	var help bool
+	var launchShell bool
 
 	flag.BoolVar(&version, "version", false, "Prints current version")
 	flag.BoolVar(&version, "v", false, "Prints current version (concise)")
 	flag.BoolVar(&help, "help", false, "Prints help documentation")
 	flag.BoolVar(&help, "h", false, "Prints help documentation (concise)")
+	flag.BoolVar(&launchShell, "shell", false, "Starts interactive shell")
+	flag.BoolVar(&launchShell, "s", false, "Starts interactive shell (concise)")
 
 	flag.Parse()
 
@@ -184,6 +207,8 @@ func main() {
 		helpDoc()
 	case version:
 		versionDoc()
+	case launchShell:
+		shell()
 	default:
 		evaluate(input)
 	}
